@@ -39,11 +39,11 @@ def index():
             return error()
         
         if feat1 > 6.0:
-            feat1 = 1.
+            feat1_ = 1.
         else:
-            feat1 = 0.
+            feat1_ = 0.
 
-        raw = np.array([[feat1, feat2, feat3, feat4]])
+        raw = np.array([[feat1_, feat2, feat3, feat4]])
 
         with open('./models/scaler.pkl', 'rb') as archivo_entrada:
             scaler = pkl.load(archivo_entrada)
@@ -69,8 +69,8 @@ def index():
         df.to_sql(name="predictions",if_exists='append',con=engine,index=False)
         return render_template('index.html',
                         tuprima=str(prediction),
-                        inp=str([raw])
-                              )
+                        inp=str(feat1, feat2, feat3, feat4)
+        )
     return render_template("index.html")
     
 @app.route('/v0/get_logs', methods=["GET"])
