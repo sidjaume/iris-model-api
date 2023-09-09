@@ -69,7 +69,7 @@ def index():
         df.to_sql(name="predictions",if_exists='append',con=engine,index=False)
         return render_template('index.html',
                         tuprima=str(prediction),
-                        inp=str([raw))
+                        inp=str([raw])
                               )
     return render_template("index.html")
     
