@@ -12,7 +12,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Crea una conexión a la base de datos
-engine = create_engine('postgres://postgres:admin123@iris-model.cbne5hhkognj.eu-central-1.rds.amazonaws.com/postgres?')
+engine = create_engine('postgres://postgresql:admin123@iris-model.cbne5hhkognj.eu-central-1.rds.amazonaws.com/postgres?')
 
 @app.route("/", methods=["GET", "POST"])
 def index():
