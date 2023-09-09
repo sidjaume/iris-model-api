@@ -5,12 +5,14 @@ from sklearn.datasets import load_iris
 import pickle as pkl
 import psycopg2
 from sqlalchemy import create_engine
+from datetime import datetime
+
 
 
 app = Flask(__name__)
 
 # Crea una conexión a la base de datos
-engine = create_engine('postgresql://postgres:admin123@iris-model.cbne5hhkognj.eu-central-1.rds.amazonaws.com/postgres?')
+engine = create_engine('postgres://postgres:admin123@iris-model.cbne5hhkognj.eu-central-1.rds.amazonaws.com/postgres?')
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -51,8 +53,6 @@ def index():
             modelo_importado = pkl.load(archivo_entrada)
         data = load_iris()
         prediction = data.target_names[modelo_importado.predict(numeros)[0]]
-
-        from datetime import datetime
 
         time = str(datetime.now())
 
