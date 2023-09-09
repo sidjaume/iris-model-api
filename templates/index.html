@@ -1,0 +1,46 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        My Model
+    </title>
+
+
+</head>
+
+<body>
+<form method = 'post' , id = 'form'>
+
+    <p>Insert the measures in the inputs to get the flower type</p>
+
+    <div>
+        <label for="measure1">Sepal Length:</label>
+        <input type="number" step="0.1" id="feat1" name="feat1" min = '0' max = '100' required>
+    </div>
+
+    <div>
+        <label for="measure2">Sepal Width:</label>
+        <input type="number" step="0.1" id="feat2" name="feat2" min = '0' max = '100' required>
+    </div>
+
+    <div>
+        <label for="measure3">Petal Length:</label>
+        <input type="number" step="0.1" id="feat3" name="feat3" min = '0' max = '100' required>
+    </div>
+
+    <div>
+        <label for="measure4">Petal Width:</label>
+        <input type="number" step="0.1" id="feat4" name="feat4" min = '0' max = '100' required>
+    </div>
+
+    <div>
+        <input type="submit" value="Predict">
+    </div>
+</form>
+Input measures: {{inp}} <br>
+My predictions: {{tuprima}}
+</body>
+
+</html>
