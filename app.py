@@ -103,7 +103,8 @@ def get_table():
     # payload = {}
     # headers = {}
     # response = r("GET", url, headers=headers, data=payload).json()
-    df = pd.DataFrame.from_dict(get_logs())
+    r = get_logs()
+    df = pd.DataFrame.from_dict(r)
     titles = df.columns
 
     return render_template('simple.html', titles = titles, tables=[df.to_html(classes='data', header="true", index = False, justify='center', border = 5)])
