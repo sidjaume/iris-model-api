@@ -96,7 +96,7 @@ def get_table():
     if request.method == 'POST':
 
         del_logs()
-        return render_template('simple.html')
+        return render_template('simple.html',msg = 'No hay registros que mostrar')
     
     df = pd.read_sql_query("select * from predictions", con = engine).to_dict("records")
     df = pd.DataFrame(df)
