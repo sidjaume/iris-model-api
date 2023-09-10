@@ -97,14 +97,9 @@ def get_table():
 
         del_logs()
         return render_template('simple.html')
-        
-    url = "https://iris-model-api-62w3-dev.fl0.io/v0/get_logs"
+    
+    df = pd.read_sql_query("select * from predictions", con = engine).to_dict("records")
 
-    payload = {}
-    headers = {}
-    response = r("GET", url, headers=headers, data=payload).json()
-    # r = get_logs()
-    df = pd.DataFrame.from_dict(r)
     titles = df.columns
 
     return render_template('simple.html', titles = titles, tables=[df.to_html(classes='data', header="true", index = False, justify='center', border = 5)])
