@@ -98,14 +98,14 @@ def get_table():
         del_logs()
         return render_template('simple.html')
         
-    url = "https://iris-model-api-62w3-dev.fl0.io/v0/get_logs"
+    # url = "https://iris-model-api-62w3-dev.fl0.io/v0/get_logs"
 
-    payload = {}
-    headers = {}
-    response = r("GET", url, headers=headers, data=payload).json()
-    df = pd.DataFrame.from_dict(response)
-    titles = df.columns
-
+    # payload = {}
+    # headers = {}
+    # response = r("GET", url, headers=headers, data=payload).json()
+    # df = pd.DataFrame.from_dict(response)
+    # titles = df.columns
+    df = pd.DataFrame.from_records(get_logs())
     return render_template('simple.html', titles = titles, tables=[df.to_html(classes='data', header="true", index = False, justify='center', border = 5)])
 
 
