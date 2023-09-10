@@ -97,7 +97,7 @@ def get_table():
         del_logs()
         return render_template('simple.html')
     import requests
-    url = "https://iris-model-api-62w3-dev.fl0.io/v0/get_logs"
+    url = "postgresql://postgres:admin123@iris-model.cbne5hhkognj.eu-central-1.rds.amazonaws.com/postgres?"
 
     payload = {}
     headers = {}
