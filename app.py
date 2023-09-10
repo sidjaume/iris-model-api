@@ -99,7 +99,8 @@ def get_table():
         return render_template('simple.html')
     
     df = pd.read_sql_query("select * from predictions", con = engine).to_dict("records")
-    titles = df[0].keys()
+    df = pd.DataFrame(df)
+    titles = df.columns
     return render_template('simple.html', titles = titles, tables=[df.to_html(classes='data', header="true", index = False, justify='center', border = 5)])
 
 
