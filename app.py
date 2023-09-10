@@ -6,6 +6,7 @@ import pickle as pkl
 import psycopg2
 from sqlalchemy import create_engine
 from datetime import datetime
+from requests import request as r
 
 
 
@@ -96,12 +97,12 @@ def get_table():
 
         del_logs()
         return render_template('simple.html')
-    import requests
+        
     url = "https://iris-model-api-62w3-dev.fl0.io/v0/get_logs"
 
     payload = {}
     headers = {}
-    response = requests.request("GET", url, headers=headers, data=payload).json()
+    response = r("GET", url, headers=headers, data=payload).json()
     df = pd.DataFrame.from_dict(response)
     titles = df.columns
 
