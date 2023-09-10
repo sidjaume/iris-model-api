@@ -64,9 +64,10 @@ def index():
             'type' : prediction,
             'time' : time
             }
+        index = [int(datetime.now().timestamp())]
         
-        df = pd.DataFrame(cols, index=[int(datetime.now().timestamp())])
-        df.to_sql(name="predictions",if_exists='append',con=engine)
+        df = pd.DataFrame(cols, index= index)
+        df.to_sql(name="predictions",if_exists='append',con=engine, index = True )
         
         return render_template('index.html',
                         tuprima=str(prediction),
