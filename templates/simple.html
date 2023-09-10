@@ -1,0 +1,27 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Table
+    </title>
+
+
+</head> 
+
+<body>
+
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+
+<br>
+<form method="post", id = 'remove_table'>
+    <input type="submit" value="Remove Database">
+</form>
+</body>
+
+
+</html>

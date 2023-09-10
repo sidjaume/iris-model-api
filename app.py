@@ -39,11 +39,11 @@ def index():
             return error()
         
         if feat1 > 6.0:
-            feat1 = 1.
+            feat1_ = 1.
         else:
-            feat1 = 0.
+            feat1_ = 0.
 
-        raw = np.array([[feat1, feat2, feat3, feat4]])
+        raw = np.array([[feat1_, feat2, feat3, feat4]])
 
         with open('./models/scaler.pkl', 'rb') as archivo_entrada:
             scaler = pkl.load(archivo_entrada)
@@ -66,7 +66,8 @@ def index():
             }
         
         df = pd.DataFrame(cols, index=[int(datetime.now().timestamp())])
-        df.to_sql(name="predictions",if_exists='append',con=engine,index=False)
+        df.to_sql(name="predictions",if_exists='append',con=engine)
+        
         return render_template('index.html',
                         tuprima=str(prediction),
                         inp=str([feat1, feat2, feat3, feat4])
@@ -86,6 +87,25 @@ def del_logs():
     conn.commit()
     conn.close()
     return 'Table deleted succesfully!'
+
+@app.route("/v0/table", methods=["GET", "POST"])
+def get_table():
+
+    if request.method == 'POST':
+
+        del_logs()
+        return render_template('simple.html')
+    import requests
+    url = "https://iris-model-api-62w3-dev.fl0.io/v0/get_logs"
+
+    payload = {}
+    headers = {}
+    response = requests.request("GET", url, headers=headers, data=payload).json()
+    df = pd.DataFrame.from_dict(response)
+    titles = df.columns
+
+    return render_template('simple.html', titles = titles, tables=[df.to_html(classes='data', header="true", index = False, justify='center', border = 5)])
+
 
 if __name__ == '__main__':
     app.run(debug=True)
