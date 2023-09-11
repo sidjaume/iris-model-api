@@ -68,7 +68,7 @@ def index():
         index = [int(datetime.now().timestamp())]
         
         df = pd.DataFrame(cols, index= index)
-        df.to_sql(name="predictions",if_exists='append',con=engine, index = True )
+        df.to_sql(name="predictions",if_exists='append',con=engine, index = False)
         
         return render_template('index.html',
                         tuprima=str(prediction),
